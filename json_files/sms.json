@@ -1,10 +1,12 @@
 {
-    "rirabook": {
-        "url": "https://rirabook.com/loginAth",
+    "drom.ru": {
+        "url": "https://my.drom.ru/sign",
         "data": {
-            "mobile1" : "numnum",
-            "loginbt1" : ""
+            "radio":"reg",
+            "sign":"79774251279"
+
         }
+
     },
 
     "SMS.ir": {
